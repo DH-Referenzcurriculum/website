@@ -1,0 +1,25 @@
+{{ define "main" }}
+  <section class="bg-white">
+    <div class="mw7 center ph3 ph4-ns pv5 pv6-l">
+      <div class="mb4">
+        <a href="/news/" class="dark-blue no-underline fw6">← Zurück zu News / Termine</a>
+      </div>
+      <div class="f6 fw6 tracked ttu dark-red mb3">News / Termine</div>
+      <h1 class="f2 f1-l near-black lh-title mt0 mb3">{{ .Title }}</h1>
+      <div class="f6 tracked ttu mid-gray mb4">{{ .Date | time.Format "2. January 2006" }}</div>
+      {{ with .Description }}
+        <p class="f4 gray lh-copy measure-wide mt0 mb4">{{ . }}</p>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="bg-near-white">
+    <div class="mw7 center ph3 ph4-ns pv5">
+      <div class="bg-white br3 pa4 pa5-l shadow-4">
+        <div class="f4 gray lh-copy nested-links nested-copy-line-height">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

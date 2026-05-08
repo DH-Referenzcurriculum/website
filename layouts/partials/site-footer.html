@@ -1,0 +1,36 @@
+<footer class="bg-near-black light-silver" role="contentinfo">
+  <div class="mw8 center ph3 ph4-ns pv5">
+    <div class="flex-l justify-between items-start">
+      <div class="w-100 w-40-l pr4-l mb4 mb0-l">
+        <div class="f4 fw6 white mb2">{{ .Site.Title }}</div>
+        <p class="lh-copy mid-gray mv0">{{ .Site.Params.description }}</p>
+      </div>
+
+      <div class="w-100 w-20-l pr3-l mb4 mb0-l">
+        <div class="f6 fw6 tracked ttu moon-gray mb2">Schnellzugriff</div>
+        <a href="/" class="db no-underline light-silver pv1">Start</a>
+        <a href="/ag-referenzcurriculum/" class="db no-underline light-silver pv1">AG</a>
+        <a href="/news/" class="db no-underline light-silver pv1">News / Termine</a>
+        <a href="/ag-referenzcurriculum/kontakt/" class="db no-underline light-silver pv1">Kontakt</a>
+      </div>
+
+      <div class="w-100 w-20-l pr3-l mb4 mb0-l">
+        <div class="f6 fw6 tracked ttu moon-gray mb2">Netzwerk</div>
+        <a href="https://digitalhumanities.de/dhd-verband/" class="db no-underline light-silver pv1">DHd</a>
+        <a href="http://eadh.org/" class="db no-underline light-silver pv1">EADH</a>
+        <a href="https://adho.org/" class="db no-underline light-silver pv1">ADHO</a>
+      </div>
+
+      <div class="w-100 w-20-l">
+        <div class="f6 fw6 tracked ttu moon-gray mb2">Rechtliches</div>
+        <a href="https://digitalhumanities.de/impressum/" class="db no-underline light-silver pv1">Impressum</a>
+        <a href="https://digitalhumanities.de/datenschutzerklaerung/" class="db no-underline light-silver pv1">Datenschutz</a>
+      </div>
+    </div>
+
+    <div class="bt b--white-10 mt4 pt3 f6 mid-gray flex-l justify-between items-center">
+      <div>© {{ now.Format "2006" }} {{ .Site.Title }}</div>
+      <div>{{ partials.IncludeCached "social/follow.html" . }}</div>
+    </div>
+  </div>
+</footer>

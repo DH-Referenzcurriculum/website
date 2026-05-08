@@ -1,0 +1,85 @@
+{{ define "main" }}
+  {{ $pages := .RegularPages.ByWeight }}
+  {{ if eq (len $pages) 0 }}
+    {{ $pages = .RegularPages.ByTitle }}
+  {{ end }}
+  {{ $newsSection := site.GetPage "/news" }}
+
+  <section class="bg-white">
+    <div class="mw8 center ph3 ph4-ns pv5 pv6-l">
+      <div class="flex-l items-start justify-between">
+        <div class="w-100 w-two-thirds-l pr5-l">
+          <div class="f6 fw6 tracked ttu dark-red mb3">AG-Profil</div>
+          <h1 class="f2 f1-l near-black lh-title mt0 mb3">{{ .Title }}</h1>
+          {{ with .Description }}
+            <p class="f4 gray lh-copy measure-wide mt0 mb4">{{ . }}</p>
+          {{ end }}
+          <div class="f5 gray lh-copy measure-wide nested-links">
+            {{ .Content }}
+          </div>
+        </div>
+        <aside class="w-100 w-third-l mt4 mt0-l">
+          <div class="bg-near-white br3 pa4 shadow-4 mb3">
+            <div class="f6 fw6 tracked ttu mid-gray mb3">Direkteinstieg</div>
+            {{ range $pages }}
+              <a href="{{ .RelPermalink }}" class="db no-underline dark-blue pv2 bb b--black-10 last-child-b-0">{{ .Title }}</a>
+            {{ end }}
+          </div>
+          <div class="bg-dark-blue white br3 pa4 shadow-4">
+            <div class="f6 fw6 tracked ttu light-silver mb3">Aktuelles</div>
+            <p class="lh-copy light-gray mt0">Ergänze diese Sektion später um Meldungen, Veranstaltungen oder Hinweise zur curriculären Arbeit.</p>
+            <a href="{{ with $newsSection }}{{ .RelPermalink }}{{ else }}/news/{{ end }}" class="white no-underline fw6">Zu News / Termine →</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-near-white">
+    <div class="mw8 center ph3 ph4-ns pv5">
+      <div class="mb4">
+        <div class="f6 fw6 tracked ttu dark-red mb2">Bereiche</div>
+        <h2 class="f2 near-black mt0 mb2">Die Inhalte der AG auf einen Blick</h2>
+        <p class="f5 gray measure-wide mv0">Die Unterseiten sind als klar gegliederte Bausteine angelegt und können später um zusätzliche Inhalte, Materialien und interaktive Elemente erweitert werden.</p>
+      </div>
+      <div class="flex-l flex-wrap nl3 nr3">
+        {{ range $pages }}
+          <div class="w-100 w-50-l pa3">
+            <article class="h-100 bg-white br3 pa4 shadow-4">
+              <div class="f6 tracked ttu mid-gray mb2">{{ .Section | humanize }}</div>
+              <h3 class="f3 near-black mt0 mb3">{{ .Title }}</h3>
+              <p class="gray lh-copy">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}</p>
+              <a href="{{ .RelPermalink }}" class="dark-blue no-underline fw6">Seite öffnen →</a>
+            </article>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="mw8 center ph3 ph4-ns pv5">
+      <div class="flex-l items-start justify-between">
+        <div class="w-100 w-60-l pr5-l">
+          <div class="f6 fw6 tracked ttu dark-red mb2">Kontext</div>
+          <h2 class="f2 near-black mt0 mb3">Warum diese Struktur funktioniert</h2>
+          <p class="f5 gray lh-copy mb0">Die Seite verbindet programmatische Aussagen mit schnellen Einstiegen in konkrete Themen. So wird aus einer reinen Informationssammlung eine kleine, glaubwürdige Fachwebseite mit klaren Wegen für unterschiedliche Nutzer:innen.</p>
+        </div>
+        <div class="w-100 w-40-l mt4 mt0-l">
+          <div class="bt bb b--black-10 pv3">
+            <div class="fw6 near-black mb2">Für Interessierte</div>
+            <div class="gray lh-copy">Schneller Zugang zu Profil, Zielen und Materialien.</div>
+          </div>
+          <div class="bb b--black-10 pv3">
+            <div class="fw6 near-black mb2">Für Lehrende</div>
+            <div class="gray lh-copy">Anschlussfähigkeit für curriculare Planung und Abstimmung.</div>
+          </div>
+          <div class="bb b--black-10 pv3">
+            <div class="fw6 near-black mb2">Für die AG</div>
+            <div class="gray lh-copy">Ausbaufähige Basis für Kommunikation, Sichtbarkeit und Dokumentation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

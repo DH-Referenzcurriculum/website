@@ -1,0 +1,169 @@
+{{ define "main" }}
+  {{ $overview := site.GetPage "/ag-referenzcurriculum" }}
+  {{ $focus := site.GetPage "/ag-referenzcurriculum/arbeitsschwerpunkte" }}
+  {{ $goals := site.GetPage "/ag-referenzcurriculum/ziele" }}
+  {{ $publications := site.GetPage "/ag-referenzcurriculum/publikationen" }}
+  {{ $contact := site.GetPage "/ag-referenzcurriculum/kontakt" }}
+  {{ $newsSection := site.GetPage "/news" }}
+  {{ $newsItems := slice }}
+  {{ with $newsSection }}
+    {{ $newsItems = first 2 (.RegularPages.ByDate.Reverse) }}
+  {{ end }}
+
+  <section class="bg-white">
+    <div class="mw8 center ph3 ph4-ns pv5 pv6-l">
+      <div class="flex-l items-start justify-between">
+        <div class="w-100 w-two-thirds-l pr4-l">
+          <div class="f6 fw6 tracked ttu dark-red mb3">Orientierung für Studium und Lehre</div>
+          <div class="f3 f2-l near-black lh-title mb4">Curriculare Profile in den Digital Humanities sichtbar und vergleichbar machen.</div>
+          <div class="f5 gray lh-copy">
+            {{ .Content }}
+          </div>
+          <div class="mt4 flex flex-wrap gap-2">
+            <a href="{{ with $overview }}{{ .RelPermalink }}{{ else }}/ag-referenzcurriculum/{{ end }}" class="dib mr3 mb3 ph4 pv3 br2 no-underline white bg-dark-blue hover-bg-navy">Zur AG im Überblick</a>
+            <a href="{{ with $goals }}{{ .RelPermalink }}{{ else }}/ag-referenzcurriculum/ziele/{{ end }}" class="dib mb3 ph4 pv3 br2 no-underline dark-blue ba b--dark-blue bg-white hover-bg-washed-blue">Ziele ansehen</a>
+          </div>
+        </div>
+        <aside class="w-100 w-third-l mt4 mt0-l">
+          <div class="bg-near-white br3 pa4 shadow-4">
+            <div class="f6 fw6 tracked ttu mid-gray mb3">Auf einen Blick</div>
+            <div class="mb3">
+              <div class="f2 fw7 dark-blue lh-solid">4</div>
+              <div class="gray">Kernbereiche der Website</div>
+            </div>
+            <div class="mb3">
+              <div class="f2 fw7 dark-red lh-solid">2</div>
+              <div class="gray">zentrale Referenzpublikationen</div>
+            </div>
+            <div>
+              <div class="f2 fw7 dark-green lh-solid">3</div>
+              <div class="gray">aktuelle Ansprechpartner:innen</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-near-white">
+    <div class="mw8 center ph3 ph4-ns pv5">
+      <div class="flex items-end justify-between mb4">
+        <div>
+          <div class="f6 fw6 tracked ttu dark-red mb2">Inhalte</div>
+          <h2 class="f2 near-black mt0 mb2">Die wichtigsten Themen der AG</h2>
+          <p class="f5 gray measure-wide mv0">Die Startseite führt direkt zu den Bereichen, die für Studiengangsentwicklung, fachliche Einordnung und Kontaktaufnahme relevant sind.</p>
+        </div>
+      </div>
+      <div class="flex-l flex-wrap nl3 nr3">
+        <div class="w-100 w-50-l pa3">
+          <div class="h-100 bg-white br3 pa4 shadow-4">
+            <div class="f6 fw6 tracked ttu mid-gray mb2">Profil</div>
+            <h3 class="f3 near-black mt0">Arbeitsschwerpunkte</h3>
+            <p class="gray lh-copy">Von Digitalisierung kulturellen Erbes bis zur methodischen Reflexion digitaler Praktiken: Die AG beschreibt, welche Themenfelder DH-Curricula prägen.</p>
+            <a href="{{ with $focus }}{{ .RelPermalink }}{{ else }}/ag-referenzcurriculum/arbeitsschwerpunkte/{{ end }}" class="dark-blue no-underline fw6">Mehr zu den Schwerpunkten →</a>
+          </div>
+        </div>
+        <div class="w-100 w-50-l pa3">
+          <div class="h-100 bg-white br3 pa4 shadow-4">
+            <div class="f6 fw6 tracked ttu mid-gray mb2">Orientierung</div>
+            <h3 class="f3 near-black mt0">Ziele des Referenzcurriculums</h3>
+            <p class="gray lh-copy">Das Referenzcurriculum schafft ein gemeinsames Vokabular und unterstützt Vergleichbarkeit, Anerkennung von Leistungen und curriculare Weiterentwicklung.</p>
+            <a href="{{ with $goals }}{{ .RelPermalink }}{{ else }}/ag-referenzcurriculum/ziele/{{ end }}" class="dark-blue no-underline fw6">Mehr zu den Zielen →</a>
+          </div>
+        </div>
+        <div class="w-100 w-50-l pa3">
+          <div class="h-100 bg-white br3 pa4 shadow-4">
+            <div class="f6 fw6 tracked ttu mid-gray mb2">Materialien</div>
+            <h3 class="f3 near-black mt0">Publikationen</h3>
+            <p class="gray lh-copy">Die Broschüre und das Working Paper geben einen kompakten Einstieg in die curriculare Debatte und in die fachliche Positionierung der Digital Humanities.</p>
+            <a href="{{ with $publications }}{{ .RelPermalink }}{{ else }}/ag-referenzcurriculum/publikationen/{{ end }}" class="dark-blue no-underline fw6">Zu den Materialien →</a>
+          </div>
+        </div>
+        <div class="w-100 w-50-l pa3">
+          <div class="h-100 bg-white br3 pa4 shadow-4">
+            <div class="f6 fw6 tracked ttu mid-gray mb2">Austausch</div>
+            <h3 class="f3 near-black mt0">Kontakt und Convenor:innen</h3>
+            <p class="gray lh-copy">Die Kontaktseite bündelt die aktuellen Ansprechpartner:innen und externe Anlaufstellen für Austausch, Vernetzung und weitere Informationen.</p>
+            <a href="{{ with $contact }}{{ .RelPermalink }}{{ else }}/ag-referenzcurriculum/kontakt/{{ end }}" class="dark-blue no-underline fw6">Zur Kontaktseite →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-washed-blue">
+    <div class="mw8 center ph3 ph4-ns pv5">
+      <div class="flex-l items-end justify-between mb4">
+        <div class="w-100 w-70-l pr4-l">
+          <div class="f6 fw6 tracked ttu dark-red mb2">Aktuell</div>
+          <h2 class="f2 near-black mt0 mb2">News und Termine</h2>
+          <p class="f5 gray measure-wide mv0">Ein kleiner Nachrichtenbereich macht das Mockup lebendiger und zeigt, wie sich Ankündigungen, Werkstattberichte oder Hinweise auf Publikationen integrieren lassen.</p>
+        </div>
+        <div class="w-100 w-30-l mt3 mt0-l tr-l">
+          <a href="{{ with $newsSection }}{{ .RelPermalink }}{{ else }}/news/{{ end }}" class="dark-blue no-underline fw6">Alle News ansehen →</a>
+        </div>
+      </div>
+      <div class="flex-l nl3 nr3">
+        {{ if gt (len $newsItems) 0 }}
+          {{ range $newsItems }}
+            <div class="w-100 w-50-l pa3">
+              <article class="h-100 bg-white br3 pa4 shadow-4">
+                <div class="f6 tracked ttu mid-gray mb2">{{ .Date | time.Format "2. January 2006" }}</div>
+                <h3 class="f3 near-black mt0 mb3">{{ .Title }}</h3>
+                <p class="gray lh-copy">{{ with .Params.summary }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}</p>
+                <a href="{{ .RelPermalink }}" class="dark-blue no-underline fw6">Zum Beitrag →</a>
+              </article>
+            </div>
+          {{ end }}
+        {{ else }}
+          <div class="w-100 pa3">
+            <div class="bg-white br3 pa4 shadow-4 gray">Hier können aktuelle Meldungen, Termine und Hinweise platziert werden.</div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="mw8 center ph3 ph4-ns pv5">
+      <div class="flex-l items-start justify-between">
+        <div class="w-100 w-60-l pr5-l">
+          <div class="f6 fw6 tracked ttu dark-red mb2">Nutzen</div>
+          <h2 class="f2 near-black mt0">Ein Referenzrahmen statt einer starren Vorgabe</h2>
+          <p class="f5 gray lh-copy">Das Mockup positioniert die AG als Ort für curriculare Verständigung. Es macht deutlich, dass ein Referenzcurriculum unterschiedliche Profile nicht vereinheitlicht, sondern präzise beschreibbar und anschlussfähig macht.</p>
+        </div>
+        <div class="w-100 w-40-l mt4 mt0-l">
+          <div class="bt bb b--black-10 pv3">
+            <div class="fw6 near-black mb2">Vergleichbarkeit</div>
+            <div class="gray lh-copy">Studiengänge lassen sich transparenter gegenüberstellen.</div>
+          </div>
+          <div class="bb b--black-10 pv3">
+            <div class="fw6 near-black mb2">Anerkennung</div>
+            <div class="gray lh-copy">Kompetenzen und Studienleistungen werden besser anschlussfähig.</div>
+          </div>
+          <div class="bb b--black-10 pv3">
+            <div class="fw6 near-black mb2">Weiterentwicklung</div>
+            <div class="gray lh-copy">Neue Themen in Studium und Lehre können systematisch aufgenommen werden.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-blue white">
+    <div class="mw8 center ph3 ph4-ns pv5 pv6-l">
+      <div class="flex-l items-center justify-between">
+        <div class="w-100 w-two-thirds-l pr4-l">
+          <div class="f6 fw6 tracked ttu light-silver mb2">Nächste Schritte</div>
+          <h2 class="f2 white mt0 mb3">Von der Mockup-Seite zur ausgebauten AG-Präsenz</h2>
+          <p class="f5 light-gray lh-copy mb0">Diese Startseite kann als Grundlage für eine spätere Erweiterung dienen, etwa mit News, Veranstaltungsankündigungen, kommentierten Ressourcen, Teamprofilen oder einem stärker ausdifferenzierten Curriculum-Bereich.</p>
+        </div>
+        <div class="w-100 w-third-l mt4 mt0-l">
+          <a href="{{ with $publications }}{{ .RelPermalink }}{{ else }}/ag-referenzcurriculum/publikationen/{{ end }}" class="db tc mb3 ph4 pv3 br2 no-underline dark-blue bg-white hover-bg-near-white">Publikationen ansehen</a>
+          <a href="{{ with $newsSection }}{{ .RelPermalink }}{{ else }}/news/{{ end }}" class="db tc mb3 ph4 pv3 br2 no-underline white ba b--white-40 hover-bg-white-10">News entdecken</a>
+          <a href="{{ with $contact }}{{ .RelPermalink }}{{ else }}/ag-referenzcurriculum/kontakt/{{ end }}" class="db tc ph4 pv3 br2 no-underline white ba b--white-40 hover-bg-white-10">Kontakt aufnehmen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

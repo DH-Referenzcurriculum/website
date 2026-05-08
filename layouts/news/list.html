@@ -1,0 +1,33 @@
+{{ define "main" }}
+  <section class="bg-white">
+    <div class="mw8 center ph3 ph4-ns pv5 pv6-l">
+      <div class="w-100 w-two-thirds-l">
+        <div class="f6 fw6 tracked ttu dark-red mb3">Aktuelles</div>
+        <h1 class="f2 f1-l near-black lh-title mt0 mb3">{{ .Title }}</h1>
+        {{ with .Description }}
+          <p class="f4 gray lh-copy measure-wide mt0 mb4">{{ . }}</p>
+        {{ end }}
+        <div class="f5 gray lh-copy measure-wide nested-links">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-near-white">
+    <div class="mw8 center ph3 ph4-ns pv5">
+      <div class="flex-l flex-wrap nl3 nr3">
+        {{ range .RegularPages.ByDate.Reverse }}
+          <div class="w-100 w-50-l pa3">
+            <article class="h-100 bg-white br3 pa4 shadow-4">
+              <div class="f6 tracked ttu mid-gray mb2">{{ .Date | time.Format "2. January 2006" }}</div>
+              <h2 class="f3 near-black mt0 mb3">{{ .Title }}</h2>
+              <p class="gray lh-copy">{{ with .Params.summary }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}</p>
+              <a href="{{ .RelPermalink }}" class="dark-blue no-underline fw6">Beitrag lesen →</a>
+            </article>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,47 @@
+theme = 'ananke'
+title = 'AG Referenzcurriculum Digital Humanities'
+defaultContentLanguage = 'de'
+
+[languages.de]
+label = 'Deutsch'
+locale = 'de-DE'
+weight = 1
+
+[params]
+description = 'Orientierung, Austausch und Materialien für die curriculare Entwicklung in den Digital Humanities.'
+background_color_class = 'bg-dark-gray'
+
+[[menus.main]]
+name = 'Start'
+pageRef = '/'
+weight = 1
+
+[[menus.main]]
+name = 'AG'
+pageRef = '/ag-referenzcurriculum'
+weight = 2
+
+[[menus.main]]
+name = 'Ziele'
+pageRef = '/ag-referenzcurriculum/ziele'
+weight = 3
+
+[[menus.main]]
+name = 'Publikationen'
+pageRef = '/ag-referenzcurriculum/publikationen'
+weight = 4
+
+[[menus.main]]
+name = 'Team'
+pageRef = '/ag-referenzcurriculum/team'
+weight = 5
+
+[[menus.main]]
+name = 'News'
+pageRef = '/news'
+weight = 6
+
+[[menus.main]]
+name = 'Kontakt'
+pageRef = '/ag-referenzcurriculum/kontakt'
+weight = 7

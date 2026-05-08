@@ -1,0 +1,63 @@
+{{ define "main" }}
+  {{ $section := site.GetPage "/ag-referenzcurriculum" }}
+  {{ $siblings := slice }}
+  {{ with $section }}
+    {{ $siblings = where .RegularPages "Permalink" "ne" $.Permalink }}
+  {{ end }}
+
+  <section class="bg-white">
+    <div class="mw8 center ph3 ph4-ns pv5 pv6-l">
+      <div class="mb4">
+        <a href="{{ with $section }}{{ .RelPermalink }}{{ else }}/ag-referenzcurriculum/{{ end }}" class="dark-blue no-underline fw6">← Zurück zur AG-Übersicht</a>
+      </div>
+      <div class="flex-l items-start justify-between">
+        <div class="w-100 w-two-thirds-l pr5-l">
+          <div class="f6 fw6 tracked ttu dark-red mb3">{{ .CurrentSection.Title }}</div>
+          <h1 class="f2 f1-l near-black lh-title mt0 mb3">{{ .Title }}</h1>
+          {{ with .Description }}
+            <p class="f4 gray lh-copy measure-wide mt0 mb4">{{ . }}</p>
+          {{ end }}
+        </div>
+        <aside class="w-100 w-third-l mt4 mt0-l">
+          <div class="bg-near-white br3 pa4 shadow-4">
+            <div class="f6 fw6 tracked ttu mid-gray mb3">Schnellzugriff</div>
+            <a href="{{ with $section }}{{ .RelPermalink }}{{ else }}/ag-referenzcurriculum/{{ end }}" class="db no-underline dark-blue pv2 bb b--black-10">AG-Übersicht</a>
+            <a href="/news/" class="db no-underline dark-blue pv2">News / Termine</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-near-white">
+    <div class="mw8 center ph3 ph4-ns pv5">
+      <div class="bg-white br3 pa4 pa5-l shadow-4">
+        <div class="f4 gray lh-copy nested-links nested-copy-line-height">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{ if gt (len $siblings) 0 }}
+    <section class="bg-white">
+      <div class="mw8 center ph3 ph4-ns pv5">
+        <div class="mb4">
+          <div class="f6 fw6 tracked ttu dark-red mb2">Weiterlesen</div>
+          <h2 class="f2 near-black mt0 mb2">Verwandte Seiten</h2>
+        </div>
+        <div class="flex-l flex-wrap nl3 nr3">
+          {{ range first 3 ($siblings.ByWeight) }}
+            <div class="w-100 w-third-l pa3">
+              <article class="h-100 bg-near-white br3 pa4">
+                <h3 class="f4 near-black mt0 mb2">{{ .Title }}</h3>
+                <p class="gray lh-copy">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}</p>
+                <a href="{{ .RelPermalink }}" class="dark-blue no-underline fw6">Seite öffnen →</a>
+              </article>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}
